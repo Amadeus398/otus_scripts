@@ -8,18 +8,20 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
     exit 1
 fi
 
-set -e
-yum update -y httpd && sudo yum install -y httpd
 set +e
+yum update -y httpd && sudo yum install -y httpd
+set -e
 
-rsync -avz "$ADDR":/etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf && \
-rsync -avz "$ADDR":/var/www/html/wordpress /var/www/html/ && \
+rsync -avz "$ADDR":/etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf 
+rsync -avz "$ADDR":/var/www/html/wordpress /var/www/html/ 
 
-mkdir -p /var/www/html/wp-content/uploads && \
+mkdir -p /var/www/html/wp-content/uploads 
 
-chown -R apache:apache /var/www/html/* && \
+chown -R apache:apache /var/www/html/* 
 
-systemctl enable --now httpd.service && \
+systemctl enable --now httpd.service 
 systemctl status httpd.service
+
+set +e
 
 
