@@ -15,7 +15,7 @@ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 yum install -y epel-release yum-utils && \
 
-yum install -y nginx git && \
+yum install -y nginx git ca-certificates && \
 rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf && \
 rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf && \
 
@@ -26,7 +26,7 @@ openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y && \
 
 set +e
 wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz && \
-tar -xzvf openssl-1.1.1k.tar.gz && \
+tar -xzvf openssl-1.1.1o.tar.gz && \
 
 wget https://nginx.org/download/nginx-1.20.2.tar.gz && \
 tar -xzvf nginx-1.20.2.tar.gz && \
