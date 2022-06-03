@@ -2,6 +2,7 @@
 
 DATE=$(date +"%Y-%m-%d")
 WORK_DIR=mysql_backups
+MYSQL_PASS=Digger398!
 MYSQL_DATABASES=$(mysql -uroot -p"$MYSQL_PASS" --skip-column-names -e "SHOW DATABASES LIKE '%otus%'";)
 
 ##############
