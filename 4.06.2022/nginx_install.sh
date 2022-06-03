@@ -9,6 +9,7 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
 fi
 
 cd ~
+set -e
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
 
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
@@ -23,6 +24,7 @@ git clone https://github.com/vozlt/nginx-module-vts.git && \
 yum install make gcc perl-core pcre-devel wget redhat-rpm-config \
 openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y && \
 
+set +e
 wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz && \
 tar -xzvf openssl-1.1.1k.tar.gz && \
 
