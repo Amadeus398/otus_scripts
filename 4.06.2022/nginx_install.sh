@@ -23,7 +23,7 @@ git clone https://github.com/vozlt/nginx-module-vts.git && \
 yum install make gcc perl-core pcre-devel wget redhat-rpm-config \
 openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y && \
 
-wget https://ftp.openssl.org/source/openssl-1.1.1k.tar.gz && \
+wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz && \
 tar -xzvf openssl-1.1.1k.tar.gz && \
 
 wget https://nginx.org/download/nginx-1.20.2.tar.gz && \
