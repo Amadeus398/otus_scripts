@@ -8,8 +8,9 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
     exit 1
 fi
 
-
-yum update -y httpd && sudo yum install -y httpd && \
+set -e
+yum update -y httpd && sudo yum install -y httpd
+set +e
 
 rsync -avz "$ADDR":/etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf && \
 rsync -avz "$ADDR":/var/www/html/wordpress /var/www/html/ && \

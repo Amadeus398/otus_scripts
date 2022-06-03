@@ -7,7 +7,10 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
     exit 1
 fi
 
-yum -y install mariadb-server mariadb && \
+set -e
+yum -y install mariadb-server mariadb
+set +e
+
 systemctl start mariadb && \
 mysql_secure_installation && \
 

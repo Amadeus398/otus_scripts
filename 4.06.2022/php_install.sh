@@ -7,6 +7,8 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
     exit 1
 fi
 
+set -e
+
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
 
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
@@ -20,4 +22,6 @@ php-zip php-devel php-gd php-mcrypt php-mbstring \
 php-curl php-xml php-pear php-bcmath php-json && \
 
 echo "php 7.3 installed successfully" && \
+
+set +e
 exit 0
