@@ -9,7 +9,12 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
 fi
 
 cd ~
-yum install nginx git -y && \
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+
+yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
+yum install -y epel-release yum-utils && \
+
+yum install -y nginx git && \
 rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf && \
 rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf && \
 
