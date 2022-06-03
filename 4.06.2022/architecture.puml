@@ -1,0 +1,39 @@
+@startuml
+package machine1 {
+class CentOS_1 {
+    + NGINX *:8080
+    + Apache *:80
+    + MariaDB_slave *:3306
+    + Prometheus *:9090
+    + Grafana *:3000
+    + Node_exporter *:9100
+}
+hide CentOS_1 methods
+}
+
+package machine2 {
+class CentOS_2 {
+    + NGINX *:8080
+    + Apache *:80
+    + MariaDB_master *:3306
+    + Prometheus *:9090
+    + Grafana *:3000
+    + Node_exporter *:9100
+}
+hide CentOS_2 methods
+}
+
+CentOS_2 --> CentOS_1
+
+package machine3 {
+class CentOS_3 {
+    mariadb_install()
+    nginx_install()
+    php_install()
+    apache_install()
+    prometheus_install()
+}
+hide CentOS_3 fields
+}
+
+@enduml
