@@ -9,24 +9,24 @@ if [ "$UID" -ne "$ROOT_UID" ]; then
 fi
 
 cd ~
-set -e
+set +e
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
 
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm 
 yum install -y epel-release yum-utils 
 yum install -y nginx git ca-certificates
 
-set +e
+set -e
 rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf 
 rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf 
 
 git clone https://github.com/vozlt/nginx-module-vts.git 
 
-set -e
+set +e
 yum install make gcc perl-core pcre-devel wget redhat-rpm-config \
 openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y 
 
-set +e
+set -e
 wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz 
 tar -xzvf openssl-1.1.1o.tar.gz 
 
