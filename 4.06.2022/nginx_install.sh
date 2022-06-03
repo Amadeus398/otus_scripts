@@ -10,29 +10,29 @@ fi
 
 cd ~
 set -e
-rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
 
-yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
-yum install -y epel-release yum-utils && \
-
-yum install -y nginx git ca-certificates && \
-rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf && \
-rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf && \
+yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm 
+yum install -y epel-release yum-utils 
+yum install -y nginx git ca-certificates
 
 set +e
-git clone https://github.com/vozlt/nginx-module-vts.git && \
+rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf 
+rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf 
+
+git clone https://github.com/vozlt/nginx-module-vts.git 
 
 set -e
 yum install make gcc perl-core pcre-devel wget redhat-rpm-config \
-openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y && \
+openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y 
 
 set +e
-wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz && \
-tar -xzvf openssl-1.1.1o.tar.gz && \
+wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz 
+tar -xzvf openssl-1.1.1o.tar.gz 
 
-wget https://nginx.org/download/nginx-1.20.2.tar.gz && \
-tar -xzvf nginx-1.20.2.tar.gz && \
-cd nginx-1.20.2 && \
+wget https://nginx.org/download/nginx-1.20.2.tar.gz 
+tar -xzvf nginx-1.20.2.tar.gz 
+cd nginx-1.20.2 
 
 ./configure --prefix=/usr/share/nginx \
 --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib64/nginx/modules \
@@ -57,11 +57,11 @@ cd nginx-1.20.2 && \
 --with-stream_ssl_preread_module --with-threads \
 --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic' \
 --with-ld-opt='-Wl,-z,relro -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -Wl,-E' \
---add-module=/root/nginx-module-vts --with-openssl=/root/openssl-1.1.1o && \
-make && \
-make install && \
-systemctl enable --now nginx.service && \
+--add-module=/root/nginx-module-vts --with-openssl=/root/openssl-1.1.1o 
+make 
+make install 
+systemctl enable --now nginx.service 
 
-cd ~ && \
-echo "nginx installed successfully" && \
+cd ~ 
+echo "nginx installed successfully" 
 exit 0
