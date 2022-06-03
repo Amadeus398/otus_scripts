@@ -62,6 +62,5 @@ make
 make install 
 systemctl enable --now nginx.service 
 
-cd ~ 
 echo "nginx installed successfully" 
 exit 0
