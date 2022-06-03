@@ -55,7 +55,7 @@ cd nginx-1.20.2 && \
 --with-stream_ssl_preread_module --with-threads \
 --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -m64 -mtune=generic' \
 --with-ld-opt='-Wl,-z,relro -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -Wl,-E' \
---add-module=/root/nginx-module-vts --with-openssl=/root/openssl-1.1.1k && \
+--add-module=/root/nginx-module-vts --with-openssl=/root/openssl-1.1.1o && \
 make && \
 make install && \
 systemctl enable --now nginx.service && \
