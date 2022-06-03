@@ -1,9 +1,15 @@
 #!/bin/bash
 
 ADDR=$1
+ROOT_UID=0
+
+if [ "$UID" -ne "$ROOT_UID" ]; then
+    echo "Only a user with root privileges can use this command"
+    exit 1
+fi
 
 cd ~
-sudo yum install nginx git -y && \
+yum install nginx git -y && \
 rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf && \
 rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf && \
 
