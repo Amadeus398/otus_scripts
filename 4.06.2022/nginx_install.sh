@@ -19,8 +19,10 @@ yum install -y nginx git ca-certificates && \
 rsync -avz "$ADDR":/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf && \
 rsync -avz "$ADDR":/etc/nginx/nginx.conf /etc/nginx/nginx.conf && \
 
+set +e
 git clone https://github.com/vozlt/nginx-module-vts.git && \
 
+set -e
 yum install make gcc perl-core pcre-devel wget redhat-rpm-config \
 openssl-devel zlib-devel gperftools-devel gd-devel libxslt-devel -y && \
 
