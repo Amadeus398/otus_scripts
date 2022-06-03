@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 DATE=$(date +"%Y-%m-%d")
 WORK_DIR=mysql_backups

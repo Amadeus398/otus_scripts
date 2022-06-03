@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 ADDR=$1
 ROOT_UID=0
