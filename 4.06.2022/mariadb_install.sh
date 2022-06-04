@@ -14,7 +14,7 @@ set -e
 systemctl start mariadb 
 mysql_secure_installation 
 
-sed -i "s/\[server\]/[server]\nserver-id = 10/" /etc/my.cnf.d/server.cnf 
+sed -i "s/\[mysqld]/[mysqld]\nserver-id = 10\nlog_bin = mysql-bin\nlog_error = mysql-bin.err\nbinlog_ignore_db = information_schema,mysql\nreplicate-do-db = joomladb/" /etc/my.cnf.d/server.cnf
 
 systemctl restart mariadb
 set -e
