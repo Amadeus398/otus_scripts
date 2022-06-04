@@ -3,7 +3,7 @@
 ROOT_UID=0
 
 if [ "$UID" -ne "$ROOT_UID" ]; then
-    echo "Only a user with root privileges can use this command"
+    echo "Only a user with root privileges can use this script"
     exit 1
 fi
 

@@ -1,5 +1,12 @@
 #! /bin/bash
 
+ROOT_UID=0
+
+if [ "$UID" -ne "$ROOT_UID" ]; then
+    echo "Only a user with root privileges can use this script"
+    exit 1
+fi
+
 cd ~
 set +e
 yum install -y {jnet,h,io,if,a}top iptraf nmon
