@@ -34,9 +34,9 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl start node_exporter
-systemctl enable --now node_exporter
-systemctl status node_exporter
+systemctl start node_exporter.service
+systemctl enable --now node_exporter.service
+systemctl status node_exporter.service
 
 
 mkdir {/etc/,/var/lib/}prometheus
@@ -62,22 +62,6 @@ ExecStart=/usr/local/bin/prometheus \
 --web.console.libraries=/etc/prometheus/console_libraries
 ExecReload=/bin/kill -HUP $MAINPID
 
-[Install]
-WantedBy=multi-user.target
-EOF
-
-cat <<-EOF > /etc/systemd/system/nginx_vts_exporter.service
-
-[Unit]
-Description=Nginx Monitoring
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-User=nginx
-Group=nginx
-Type=simple
-ExecStart=/usr/local/bin/nginx-vts-exporter -nginx.scrape_uri=http://localhost/status/format/json&
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -122,13 +106,13 @@ scrape_configs:
   - job_name: 'nginx_vts'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:1337/status']
+      - targets: ['localhost:1337']
 EOF
 
 systemctl daemon-reload
-systemctl start prometheus
-systemctl status prometheus
-systemctl enable --now prometheus
+systemctl start prometheus.service
+systemctl status prometheus.service
+systemctl enable --now prometheus.service
 
 cat <<-EOF > /etc/yum.repos.d/grafana.repo
 
