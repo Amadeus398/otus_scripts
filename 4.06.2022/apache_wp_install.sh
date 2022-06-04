@@ -13,7 +13,7 @@ yum update -y httpd && sudo yum install -y httpd
 set -e
 
 rsync -avz "$ADDR":/etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf 
-rsync -avz "$ADDR":/var/www/html/wordpress /var/www/html/ 
+rsync -avz "$ADDR":/var/www/html /var/www/html/
 
 mkdir -p /var/www/html/wp-content/uploads 
 
